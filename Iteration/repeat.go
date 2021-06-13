@@ -1,10 +1,8 @@
 package Iteration
 
-func Repeat(character string, count int) string {
+import "strings"
 
-	var repeated string
-	for i := 0; i < count; i++ {
-		repeated += character
-	}
-	return repeated
+//Function that returns a repeated instance of the text given
+func Repeat(character string, count int) string {
+	return strings.Repeat(character, count)
 }

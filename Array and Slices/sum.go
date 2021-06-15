@@ -7,9 +7,14 @@ func Sum(numbers []int) int {
 	}
 	return sum
 }
-func SumAll(numsToSum ...[]int) (sums []int) {
+func SumAllTails(numsToSum ...[]int) (sums []int) {
 	for _, num := range numsToSum {
-		sums = append(sums, Sum(num))
+		if len(num) == 0 {
+			sums = append(sums, 0)
+		} else {
+			tail := num[1:]
+			sums = append(sums, Sum(tail))
+		}
 	}
 	return sums
 }

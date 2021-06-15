@@ -1,6 +1,9 @@
 package strucs
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestPerimeter(t *testing.T) {
 	rectangle := Rectangle{10, 10}
@@ -16,14 +19,18 @@ func TestArea(t *testing.T) {
 		shape Shape
 		want  float64
 	}{
-		{Rectangle{12, 6}, 72},
-		{Circle{10}, 314.1592653589793},
+		{shape: Rectangle{Width: 12, Height: 6}, want: 72},
+		{shape: Circle{Radius: 10}, want: 314.1592653589793},
+		{shape: Triangle{Base: 12, Height: 6}, want: 36},
 	}
 	for _, test := range areaTests {
-		got := test.shape.Area()
-		if got != test.want {
-			t.Errorf("got %g want %g", got, test.want)
-		}
+		xType := fmt.Sprintf("%T", test.shape)
+		t.Run(xType, func(t *testing.T) {
+			got := test.shape.Area()
+			if got != test.want {
+				t.Errorf("got %g want %g", got, test.want)
+			}
+		})
 
 	}
 }
